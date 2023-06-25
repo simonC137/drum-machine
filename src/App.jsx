@@ -1,15 +1,15 @@
 import { useState, useEffect } from 'react'
-import reactLogo from './assets/react.svg'
 import './App.css'
 
 function App() {
 
   useEffect(() => {
     document.addEventListener('keydown', (event) => {
+      updateDisplay(event.key.toUpperCase())
       playSound(event.key.toUpperCase());
     })
   }, [])
-
+  
   const sounds1 = [
     { 
       name: 'heater1',
@@ -125,25 +125,21 @@ function App() {
     }
   ];
 
-  const [bank, setBank] = useState(sounds2)
+  const [bank, setBank] = useState(sounds1)
   const [activeSound, setActiveSound] = useState('play something');
 
   const playSound = (selector) => {
     const audio = document.getElementById(selector);
-    console.log(selector)
     audio.play();
   }
 
   const updateDisplay = (selector) => {
-    console.log(selector);
-    console.log(bank)
     let description = bank.filter((item) => {
       if (selector == item.keyCode) {
         setActiveSound(item.name)
         return item;
       }
     })
-    console.log(description)
   }
 
   const buttonClick = (selector) => {
@@ -151,14 +147,8 @@ function App() {
     updateDisplay(selector)
   }
 
-  const changeBank = () => {
-    setBank((currentBank) => {
-      if (currentBank == sounds1) {
-        return sounds2
-      } else {
-        return sounds1
-      }
-    })
+  const changeBank = (bank) => {
+    bank(sounds2) ? setBank(sounds1) : setBank(sounds2);
   }
 
   return (
