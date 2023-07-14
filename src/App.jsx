@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import './App.css'
+import _ from 'lodash'
 
 function App() {
 
@@ -147,8 +148,8 @@ function App() {
     updateDisplay(selector)
   }
 
-  const changeBank = (bank) => {
-    bank(sounds2) ? setBank(sounds1) : setBank(sounds2);
+  const changeBank = (event) => {
+    _.isEqual(bank, sounds2) ? setBank(sounds1) : setBank(sounds2);
   }
 
   return (
