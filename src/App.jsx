@@ -147,8 +147,14 @@ function App() {
     updateDisplay(selector)
   }
 
-  const changeBank = (bank) => {
-    bank(sounds2) ? setBank(sounds1) : setBank(sounds2);
+  const changeBank = () => {
+    setBank((prevState) => {
+      if (prevState == sounds1) {
+        return sounds2
+      } else if (prevState == sounds2) {
+        return sounds1
+      }
+    });
   }
 
   return (
@@ -181,3 +187,17 @@ function App() {
 }
 
 export default App
+
+
+
+{/* Correct changeBank function, but throws a map error when running live.
+
+const changeBank = () => {
+  setBank((prevState) => {
+    if (prevState == sounds1) {
+      return sounds2
+    } else if (prevState == sounds2) {
+      return sounds1
+    }
+  });
+} */}
