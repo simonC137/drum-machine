@@ -13,8 +13,8 @@
   height: 70px;
   width: 200px;
   border: 1px solid white;
-  margin-top: 15px;
-  margin-bottom: 15px;
+  margin-top: 125px;
+  margin-left: 50px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -28,6 +28,17 @@
   align-items: center;
   justify-content: center;
   border: 1px solid white;
+}
+
+.drum-pad:hover {
+  box-shadow: inset 110px 0 0 0 #ed7716;
+  color: rgb(11, 7, 2);
+}
+
+.drum-pad:active {
+  background-color: #29aa2e;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
 }
 
 .controls {

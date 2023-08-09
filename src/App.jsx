@@ -125,7 +125,7 @@ function App() {
     }
   ];
 
-  const [bank, setBank] = useState(sounds1)
+  const [bank, setBank] = useState(() => sounds2)
   const [activeSound, setActiveSound] = useState('play something');
 
   const playSound = (selector) => {
@@ -147,11 +147,12 @@ function App() {
     updateDisplay(selector)
   }
 
-  const changeBank = () => {
-    setBank((prevState) => {
-      if (prevState == sounds1) {
+  const changeBank = (event) => {
+    console.log(bank)
+    setBank((prevBank) => {
+      if (prevBank == sounds1) {
         return sounds2
-      } else if (prevState == sounds2) {
+      } else {
         return sounds1
       }
     });
@@ -160,7 +161,7 @@ function App() {
   return (
     <div className="App " id='drum-machine'>
           <div id='instrument' bank={bank}>
-            <div className='instrument'>
+            {<div className='instrument'>
               {bank.map((item) => {
                 return(
                   <div className="drum-pad col-md-4"
@@ -175,29 +176,13 @@ function App() {
                       >
                     </audio>
                   </div>)})}
-            </div>
+            </div>}
           <div className='controls'>
             <div id='display'>{activeSound}</div>
-            {/*<input type='range' className='volume' id='volume'></input>*/}
-            <button onClick={changeBank}>Change Bank</button>
-            </div>
+                </div>
           </div>
     </div>
   )
 }
 
 export default App
-
-
-
-{/* Correct changeBank function, but throws a map error when running live.
-
-const changeBank = () => {
-  setBank((prevState) => {
-    if (prevState == sounds1) {
-      return sounds2
-    } else if (prevState == sounds2) {
-      return sounds1
-    }
-  });
-} */}
